@@ -33,6 +33,6 @@ dependencies {
 //    implementation(name: 'pictures-release', ext: 'aar')
 //compile 'com.keller:utils_lib:1.0.1'
     implementation 'com.jushi:pictures_lib:1.0.0'
-    implementation 'io.reactivex:rxjava:latest.integration'
-    implementation 'io.reactivex:rxandroid:1.2.1'
+//    implementation 'io.reactivex:rxjava:latest.integration'
+//    implementation 'io.reactivex:rxandroid:1.2.1'
 }

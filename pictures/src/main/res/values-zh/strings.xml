@@ -1,0 +1,7 @@
+<resources>
+    <string name="please_turn_on_camera_permissions">请在设置里面打开使用相机权限</string>
+    <string name="Camera">拍照</string>
+    <string name="Album">相册</string>
+    <string name="how_to_get_picture">选择获取图片方式</string>
+    <string name="Cancel">取消</string>
+</resources>
