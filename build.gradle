@@ -19,7 +19,7 @@ allprojects {
     repositories {
         google()
         jcenter()
-//        maven { url "https://raw.githubusercontent.com/JuShiDeveloper/PictureTool/master" }
+        maven { url "https://raw.githubusercontent.com/JuShiDeveloper/PictureTool/master" }
     }
 }
 

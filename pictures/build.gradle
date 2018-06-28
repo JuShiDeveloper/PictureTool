@@ -32,6 +32,7 @@ dependencies {
     implementation 'io.reactivex:rxandroid:1.2.1'
 }
 
+//https://blog.csdn.net/lindroid/article/details/80271502
 
 //////// 打包发布配置开始 ////////
 apply plugin: 'maven'

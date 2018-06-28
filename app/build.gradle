@@ -30,8 +30,9 @@ dependencies {
 //    implementation project(':pictures')
     implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.2.41'
     implementation 'com.github.bumptech.glide:glide:3.7.0'
-    implementation(name: 'pictures-release', ext: 'aar')
-
+//    implementation(name: 'pictures-release', ext: 'aar')
+//compile 'com.keller:utils_lib:1.0.1'
+    implementation 'com.jushi:pictures_lib:1.0.0'
     implementation 'io.reactivex:rxjava:latest.integration'
     implementation 'io.reactivex:rxandroid:1.2.1'
 }
