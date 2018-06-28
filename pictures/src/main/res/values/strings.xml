@@ -1,0 +1,7 @@
+<resources>
+    <string name="please_turn_on_camera_permissions">Please turn on camera permissions in Settings</string>
+    <string name="Camera">Camera</string>
+    <string name="Album">Album</string>
+    <string name="how_to_get_picture">Choose how to get pictures</string>
+    <string name="Cancel">Cancel</string>
+</resources>

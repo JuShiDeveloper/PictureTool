@@ -1,0 +1,29 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.wyf.pictures">
+
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
+    <application android:allowBackup="true">
+        <activity
+            android:name=".camera.capturedialog.PictureCaptureDialog"
+            android:theme="@style/PictureCaptureDialog" />
+
+        <activity
+            android:name=".rxPermissions.ShadowActivity"
+            android:theme="@style/AppTheme_bg_no"></activity>
+
+        <!--拍照或从相册获取图片-->
+        <provider
+            android:name=".camera.provider.PictureFileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+    </application>
+
+</manifest>
