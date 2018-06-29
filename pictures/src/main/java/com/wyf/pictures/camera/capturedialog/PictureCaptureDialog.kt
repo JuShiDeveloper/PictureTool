@@ -1,4 +1,5 @@
 package com.wyf.pictures.camera.capturedialog
+
 import android.app.Activity
 import android.content.Intent
 import android.net.Uri
@@ -132,31 +133,39 @@ class PictureCaptureDialog : AppCompatActivity() {
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        val result = PermissionHelper.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (result) {
-            when (requestCode) {
-                PermissionHelper.REQUESTCODE_CAMERA -> takePicture()
-                PermissionHelper.REQUESTCODE_ALBUM -> getPictureFromAlbum()
+        try {
+            val result = PermissionHelper.onRequestPermissionsResult(requestCode, permissions, grantResults)
+            if (result) {
+                when (requestCode) {
+                    PermissionHelper.REQUESTCODE_CAMERA -> takePicture()
+                    PermissionHelper.REQUESTCODE_ALBUM -> getPictureFromAlbum()
+                }
             }
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == Activity.RESULT_OK) {
-            when (requestCode) {
-                PictureHelper.REQUESTCODE_CAMERA -> {
-                    dealWithCameraPicture()
+        try {
+            if (resultCode == Activity.RESULT_OK) {
+                when (requestCode) {
+                    PictureHelper.REQUESTCODE_CAMERA -> {
+                        dealWithCameraPicture()
+                    }
+                    PictureHelper.REQUESTCODE_ALBUM -> {
+                        dealWithAlbumPicture(data)
+                    }
+                    PictureHelper.REQUESTCODE_CROP -> {
+                        dealWithCropPicture(data)
+                    }
                 }
-                PictureHelper.REQUESTCODE_ALBUM -> {
-                    dealWithAlbumPicture(data)
-                }
-                PictureHelper.REQUESTCODE_CROP -> {
-                    dealWithCropPicture(data)
-                }
+            } else {
+                finish()
             }
-        } else {
-            finish()
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
     }
 
@@ -164,18 +173,22 @@ class PictureCaptureDialog : AppCompatActivity() {
      * 处理拍照的结果
      */
     private fun dealWithCameraPicture() {
-        val desUri: Uri = Uri.fromFile(pictureFile)
-        val imageUri = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            FileProvider.getUriForFile(this, this.packageName + ".provider", temPictureFile)
-        } else {
-            Uri.fromFile(temPictureFile)
-        }
-        photo.originalFile = File(temPictureFile.toString())
-        photo.pictureType = PictureType.CAMERA
-        if (PictureCapture.needCrop) {
-            PictureHelper.cropImageUri(this, imageUri, desUri, 1, 1, cropWith, cropHeiht)
-        } else {
-            sendImagePath(null, PictureType.CAMERA)
+        try {
+            val desUri: Uri = Uri.fromFile(pictureFile)
+            val imageUri = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                FileProvider.getUriForFile(this, this.packageName + ".provider", temPictureFile)
+            } else {
+                Uri.fromFile(temPictureFile)
+            }
+            photo.originalFile = File(temPictureFile.toString())
+            photo.pictureType = PictureType.CAMERA
+            if (PictureCapture.needCrop) {
+                PictureHelper.cropImageUri(this, imageUri, desUri, 1, 1, cropWith, cropHeiht)
+            } else {
+                sendImagePath(null, PictureType.CAMERA)
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
     }
 
@@ -183,21 +196,25 @@ class PictureCaptureDialog : AppCompatActivity() {
      * 处理从相册选择照片的结果
      */
     private fun dealWithAlbumPicture(data: Intent?) {
-        val pictureUri: Uri = data!!.data
-        val desUri: Uri = Uri.fromFile(pictureFile)
-        val filePathColumn = arrayOf(MediaStore.Images.Media.DATA)
-        val cursor = contentResolver.query(pictureUri,
-                filePathColumn, null, null, null)//从系统表中查询指定Uri对应的照片
-        cursor!!.moveToFirst()
-        val columnIndex = cursor.getColumnIndex(filePathColumn[0])
-        val path = cursor.getString(columnIndex)  //获取照片路径
-        cursor.close()
-        photo.originalFile = File(path)
-        photo.pictureType = PictureType.ALBUM
-        if (PictureCapture.needCrop) {
-            PictureHelper.cropImageUri(this, pictureUri, desUri, 1, 1, cropWith, cropHeiht)
-        } else {
-            sendImagePath(Uri.parse(path), PictureType.ALBUM)
+        try {
+            val pictureUri: Uri = data!!.data
+            val desUri: Uri = Uri.fromFile(pictureFile)
+            val filePathColumn = arrayOf(MediaStore.Images.Media.DATA)
+            val cursor = contentResolver.query(pictureUri,
+                    filePathColumn, null, null, null)//从系统表中查询指定Uri对应的照片
+            cursor!!.moveToFirst()
+            val columnIndex = cursor.getColumnIndex(filePathColumn[0])
+            val path = cursor.getString(columnIndex)  //获取照片路径
+            cursor.close()
+            photo.originalFile = File(path)
+            photo.pictureType = PictureType.ALBUM
+            if (PictureCapture.needCrop) {
+                PictureHelper.cropImageUri(this, pictureUri, desUri, 1, 1, cropWith, cropHeiht)
+            } else {
+                sendImagePath(Uri.parse(path), PictureType.ALBUM)
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
     }
 
@@ -205,31 +222,39 @@ class PictureCaptureDialog : AppCompatActivity() {
      * 处理裁剪后的图片并返回bitmap
      */
     private fun dealWithCropPicture(data: Intent?) {
-        val uri: Uri? = if (data != null && data.data != null) {
-            data.data
-        } else {
-            Uri.fromFile(pictureFile)
-        }
-        if (uri != null) {
-            sendImagePath(uri, PictureType.CROP)
+        try {
+            val uri: Uri? = if (data != null && data.data != null) {
+                data.data
+            } else {
+                Uri.fromFile(pictureFile)
+            }
+            if (uri != null) {
+                sendImagePath(uri, PictureType.CROP)
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
     }
 
     private fun sendImagePath(uri: Uri?, type: PictureType) {
-        when (type) {
-            PictureType.CROP -> {
-                val path = uri.toString().substring(uri.toString().indexOf("/") + 1, uri.toString().lastIndex + 1)
-                photo.cropFile = File(path)
-                photo.pictureType = PictureType.CROP
+        try {
+            when (type) {
+                PictureType.CROP -> {
+                    val path = uri.toString().substring(uri.toString().indexOf("/") + 1, uri.toString().lastIndex + 1)
+                    photo.cropFile = File(path)
+                    photo.pictureType = PictureType.CROP
+                }
+                PictureType.CAMERA -> {
+                    val path = temPictureFile.toString()
+                }
+                PictureType.ALBUM -> {
+                    val path = uri.toString()
+                }
             }
-            PictureType.CAMERA -> {
-                val path = temPictureFile.toString()
-            }
-            PictureType.ALBUM -> {
-                val path = uri.toString()
-            }
+            listener.onPhoto(photo)
+            finish()
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
-        listener.onPhoto(photo)
-        finish()
     }
 }
