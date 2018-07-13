@@ -38,7 +38,7 @@
     * 方法三：showDialog()
 
     * 设置文字颜色的方法：
-        * TipsDialog(this,object :TipsDialog.OnDropBtnClickListener{
+            * TipsDialog(this,object :TipsDialog.OnDropBtnClickListener{
                     override fun onClick(v: View, type: Any) {
 
                     }
