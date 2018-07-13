@@ -1,5 +1,6 @@
 package example.wyf.com.myapplication
 
+import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -53,7 +54,8 @@ class MainActivity : AppCompatActivity() {
                 override fun onClick(v: View, type: Any) {
 
                 }
-            }).showDialog("OK","aaaaa")
+            }).showDialog("OK","aaaaa","cccccc")
+                    .setTextColor(Color.RED,Color.BLACK,Color.BLUE)
         }
     }
 

@@ -37,6 +37,14 @@
         * 说明：参数二：type用于区分弹窗，在确定按钮的回掉接口中返回
     * 方法三：showDialog()
 
+    * 设置文字颜色的方法：
+     TipsDialog(this,object :TipsDialog.OnDropBtnClickListener{
+                    override fun onClick(v: View, type: Any) {
+
+                    }
+                }).showDialog("OK","aaaaa","cccccc")
+                        .setTextColor(Color.RED,Color.BLACK,Color.BLUE)
+
 ## 导入：
 ### 在app 的build.gradle中添加
     * implementation 'com.jushi:pictures_lib:1.0.4'

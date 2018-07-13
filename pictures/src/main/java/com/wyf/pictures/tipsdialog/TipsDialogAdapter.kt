@@ -11,6 +11,12 @@ import com.wyf.pictures.R
 
 class TipsDialogAdapter(private val data: List<String>, private val mContext: Context) : BaseAdapter() {
 
+    private var contentColor: Int = -1
+
+    fun setContentColor(contentColor: Int) {
+        this.contentColor = contentColor
+    }
+
     override fun getItemId(p0: Int): Long = 0L
 
 
@@ -33,6 +39,9 @@ class TipsDialogAdapter(private val data: List<String>, private val mContext: Co
             holder = view.tag as TipsViewHolder
         }
         holder.tView.text = data[position]
+        if (contentColor != -1) {
+            holder.tView.setTextColor(contentColor)
+        }
         return view
     }
 
