@@ -6,7 +6,7 @@ android {
     compileSdkVersion 26
     defaultConfig {
         applicationId "example.wyf.com.myapplication"
-        minSdkVersion 15
+        minSdkVersion 17
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
@@ -27,12 +27,12 @@ repositories {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support:appcompat-v7:26.1.0'
-//    implementation project(':pictures')
+    implementation project(':pictures')
     implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.2.41'
     implementation 'com.github.bumptech.glide:glide:3.7.0'
 //    implementation(name: 'pictures-release', ext: 'aar')
 //    implementation 'com.jushi:pictures_lib:1.0.0'
-    implementation 'com.jushi:pictures_lib:1.0.1'
+//    implementation 'com.jushi:pictures_lib:1.0.1'
 //    implementation 'io.reactivex:rxjava:latest.integration'
 //    implementation 'io.reactivex:rxandroid:1.2.1'
 }

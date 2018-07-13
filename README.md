@@ -26,9 +26,20 @@
 
 ### 比较：使用Rxjava结合Luban进行的图片压缩在时间上会比单独使用Luban进行压缩的时间快1-2毫秒
 
+## 加入自定义通用提示弹窗：
+### 使用方法：
+* 创建对象并传入回掉接口，接口用于确定按钮的监听
+    * TipsDialog(Context context,OnDropBtnClickListener listener)
+* 使用对象调用弹窗的showDialog方法：
+    * 方法一：showDialog(okBtnText: String?, vararg tipsText: String)
+    ** 说明：参数一：确定按钮文字；参数二：弹窗提示内容，可变参数
+    * 方法二：showDialog(okBtnText: String?, type: Any, vararg tipsText: String)
+    ** 说明：参数二：type用于区分弹窗，在确定按钮的回掉接口中返回
+    * 方法三：showDialog()
+
 ## 导入：
 ### 在app 的build.gradle中添加
-    * implementation 'com.jushi:pictures_lib:1.0.3'
+    * implementation 'com.jushi:pictures_lib:1.0.4'
 
 ### 在项目的build.gradle中allprojects{repositories { }}里面添加
   * maven { url "https://raw.githubusercontent.com/JuShiDeveloper/PictureTool/master" }

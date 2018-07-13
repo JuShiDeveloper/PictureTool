@@ -26,4 +26,18 @@
         <item name="windowNoTitle">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>
     </style>
+
+    <!--dialog動畫-->
+    <style name="dialog_animstyle">
+        <item name="android:windowEnterAnimation">@anim/fade_in_from_bottom</item>
+        <item name="android:windowExitAnimation">@anim/fade_out_to_bottom</item>
+    </style>
+    <!--退出时弹窗中的Cancel 和Drop 按钮-->
+    <style name="exit_dialog_tv_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:button">@null</item>
+        <item name="android:textSize">16sp</item>
+    </style>
 </resources>

@@ -3,6 +3,8 @@ package example.wyf.com.myapplication
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import com.base.muslim.tipsdialog.TipsDialog
 import com.bumptech.glide.Glide
 import com.wyf.pictures.camera.OnPicturePathListener
 import com.wyf.pictures.camera.PictureCapture
@@ -32,21 +34,27 @@ class MainActivity : AppCompatActivity() {
         }
 
         button1.setOnClickListener {
-            PictureCapture.getPicture(this, object : OnPicturePathListener {
-                override fun onPhoto(photo: Photo) {
-                    PictureCompression.compressionPictureRx(this@MainActivity, photo, object : OnPicturePathListener {
-                        override fun onPhoto(photo: Photo) {
-                            Glide.with(this@MainActivity)
-                                    .load(photo.compressionFile)
-                                    .into(ImageView1)
-                            Log.v("==yufei==", "originalFile = ${photo.originalFile}")
-                            Log.v("==yufei==", "compressionFile = ${photo.compressionFile}")
-                            Log.v("==yufei==", "cropFile = ${photo.cropFile}")
-                            Log.v("==yufei==", "pictureType = ${photo.pictureType}")
-                        }
-                    })
+//            PictureCapture.getPicture(this, object : OnPicturePathListener {
+//                override fun onPhoto(photo: Photo) {
+//                    PictureCompression.compressionPictureRx(this@MainActivity, photo, object : OnPicturePathListener {
+//                        override fun onPhoto(photo: Photo) {
+//                            Glide.with(this@MainActivity)
+//                                    .load(photo.compressionFile)
+//                                    .into(ImageView1)
+//                            Log.v("==yufei==", "originalFile = ${photo.originalFile}")
+//                            Log.v("==yufei==", "compressionFile = ${photo.compressionFile}")
+//                            Log.v("==yufei==", "cropFile = ${photo.cropFile}")
+//                            Log.v("==yufei==", "pictureType = ${photo.pictureType}")
+//                        }
+//                    })
+//                }
+//            }, false)
+            TipsDialog(this,object :TipsDialog.OnDropBtnClickListener{
+                override fun onClick(v: View, type: Any) {
+
                 }
-            }, false)
+            }).showDialog("OK","aaaaa")
         }
     }
+
 }
