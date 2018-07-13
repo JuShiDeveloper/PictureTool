@@ -49,5 +49,8 @@
 ### 在app 的build.gradle中添加
     * implementation 'com.jushi:pictures_lib:1.0.4'
 
+        * Tips：minSdkVersion 17 以上
+
 ### 在项目的build.gradle中allprojects{repositories { }}里面添加
   * maven { url "https://raw.githubusercontent.com/JuShiDeveloper/PictureTool/master" }
+
