@@ -32,9 +32,9 @@
     * TipsDialog(Context context,OnDropBtnClickListener listener)
 * 使用对象调用弹窗的showDialog方法：
     * 方法一：showDialog(okBtnText: String?, vararg tipsText: String)
-    ** 说明：参数一：确定按钮文字；参数二：弹窗提示内容，可变参数
+        * 说明：参数一：确定按钮文字；参数二：弹窗提示内容，可变参数
     * 方法二：showDialog(okBtnText: String?, type: Any, vararg tipsText: String)
-    ** 说明：参数二：type用于区分弹窗，在确定按钮的回掉接口中返回
+        * 说明：参数二：type用于区分弹窗，在确定按钮的回掉接口中返回
     * 方法三：showDialog()
 
 ## 导入：
